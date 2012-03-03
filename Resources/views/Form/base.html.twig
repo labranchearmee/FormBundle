@@ -13,6 +13,13 @@
 {% endspaceless %}
 {% endblock field_errors %}
 
+{# i18n #}
+{% block field_label %}
+{% spaceless %}
+    <label for="{{ id }}">{{ id|replace({'_':'.'})|trans }}</label>
+{% endspaceless %}
+{% endblock field_label %}
+
 {# required #}
 {% block field_label %}
     {{ parent() }}
