@@ -4,7 +4,7 @@
 {% block field_errors %}
 {% spaceless %}
     {% if errors|length > 0 %}
-    <p class="alert-message warning">
+    <p class="alert alert-error">
         {% for error in errors %}
             {{ error.messageTemplate|trans(error.messageParameters, 'validators') }}<br/>
         {% endfor %}
@@ -20,7 +20,7 @@
     <label for="{{ id }}">
       {{ id|replace({'_':'.'})|trans }}
       {% if required %}
-          <span class="required" title="This field is required">*</span>
+          <span class="required" title="{{ 'form.mandatory.field'|trans }}">*</span>
       {% endif %}
     </label>
     {% endspaceless %}
@@ -40,12 +40,13 @@
 
 {# checkbox #}
 {% block checkbox_widget %}
+{% spaceless %}value:{{ value }},checked:{{ checked }}
 <div class="btn-group">
-	<label class="btn" for="{{ name }}-radio1">Yes</label>
-	<input class="hide" type="radio" id="{{ name }}-radio1" name="{{ name }}-radio" checked="checked" />
-	<input class="hide" type="radio" id="{{ name }}-radio2" name="{{ name }}-radio" />
-	<label class="btn" for="{{ name }}-radio2">No</label>
+	<label class="btn{% if checked %} btn-primary{% endif %}" for="form_{{ name }}">{{ 'yes'|trans({}, 'BrickstormFormBundle') }}</label>
+	<input class="hide" type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+	<label class="btn{% if not checked %} btn-primary{% endif %}" for="form_{{ name }}">{{ 'no'|trans({}, 'BrickstormFormBundle') }}</label>
 </div>
+{% endspaceless %}
 {% endblock %}
 
 
