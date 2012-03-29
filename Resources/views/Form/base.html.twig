@@ -40,7 +40,7 @@
 
 {# checkbox #}
 {% block checkbox_widget %}
-{% spaceless %}value:{{ value }},checked:{{ checked }}
+{% spaceless %}
 <div class="btn-group">
 	<label class="btn{% if checked %} btn-primary{% endif %}" for="form_{{ name }}">{{ 'yes'|trans({}, 'BrickstormFormBundle') }}</label>
 	<input class="hide" type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
