@@ -30,7 +30,13 @@
 
 {# help #}
 {% block field_widget %}
+    {% if addon is defined %}
+    <div class="input-prepend">
+      <span class="add-on">{{ addon }}</span>{{ parent() }}
+    </div>
+    {% else %}
     {{ parent() }}
+    {% endif %}
 
     {% if help is defined %}
         <span class="help-block">{{ help }}</span>
